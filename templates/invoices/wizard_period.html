@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Invoice Wizard · Period{% endblock %}
+{% block content %}
+<h1 class="h4 mb-3">Invoice wizard</h1>
+<p class="text-muted">Select the period to gather executed lessons and create an invoice.</p>
+<form id="invoicePeriodForm" class="row g-3">
+  <div class="col-12 col-md-4">
+    <label class="form-label" for="period_start">Start date</label>
+    <input class="form-control" type="date" id="period_start" required>
+  </div>
+  <div class="col-12 col-md-4">
+    <label class="form-label" for="period_end">End date</label>
+    <input class="form-control" type="date" id="period_end" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Prepare lessons</button>
+  </div>
+</form>
+<div class="alert mt-3 d-none" id="invoicePeriodAlert"></div>
+{% endblock %}
+{% block scripts %}
+<script type="module" src="{{ url_for('static', filename='js/invoices_wizard.js') }}"></script>
+<script>
+  window.INVOICE_WIZARD_STEP = 'period';
+</script>
+{% endblock %}

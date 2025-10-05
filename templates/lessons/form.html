@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}{% if mode == 'create' %}New Lesson{% else %}Edit Lesson{% endif %} · LaganaCoach{% endblock %}
+{% block content %}
+<h1 class="h4 mb-4">{% if mode == 'create' %}Create lesson{% else %}Edit lesson{% endif %}</h1>
+<form id="lessonForm" data-mode="{{ mode }}" data-lesson-id="{{ lesson_id or '' }}">
+  <div class="row g-3">
+    <div class="col-12 col-md-6" id="coachField">
+      <label class="form-label" for="coach_id">Coach</label>
+      <select class="form-select" id="coach_id"></select>
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label" for="date">Date</label>
+      <input class="form-control" type="date" id="date" required>
+    </div>
+    <div class="col-6 col-md-4">
+      <label class="form-label" for="start_time">Start time</label>
+      <input class="form-control" type="time" id="start_time" required>
+    </div>
+    <div class="col-6 col-md-4">
+      <label class="form-label" for="end_time">End time</label>
+      <input class="form-control" type="time" id="end_time" required>
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label" for="total_amount">Total amount (£)</label>
+      <input class="form-control" type="number" step="0.01" id="total_amount" required>
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label" for="club_reimbursement_amount">Club reimbursement (£)</label>
+      <input class="form-control" type="number" step="0.01" id="club_reimbursement_amount">
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label" for="type">Type</label>
+      <select class="form-select" id="type">
+        <option value="private">Private</option>
+        <option value="club">Club</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label" for="status">Status</label>
+      <select class="form-select" id="status">
+        <option value="draft">Draft</option>
+        <option value="set">Set</option>
+        <option value="executed">Executed</option>
+        <option value="invoiced">Invoiced</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label" for="payment_status">Payment status</label>
+      <select class="form-select" id="payment_status">
+        <option value="open">Open</option>
+        <option value="paid">Paid</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <label class="form-label" for="player_ids">Players</label>
+      <select class="form-select" id="player_ids" multiple required></select>
+    </div>
+    <div class="col-12">
+      <label class="form-label" for="stroke_codes">Strokes</label>
+      <div id="strokeCheckboxes" class="row g-2"></div>
+    </div>
+    <div class="col-12">
+      <label class="form-label" for="notes">Notes</label>
+      <textarea class="form-control" id="notes" rows="3"></textarea>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between mt-4">
+    <a class="btn btn-link" href="{{ url_for('lessons_list') }}">Cancel</a>
+    <button class="btn btn-primary" type="submit">Save lesson</button>
+  </div>
+</form>
+<div class="alert mt-3 d-none" id="lessonFormAlert"></div>
+{% endblock %}
+{% block scripts %}
+<script type="module" src="{{ url_for('static', filename='js/lessons_form.js') }}"></script>
+{% endblock %}
