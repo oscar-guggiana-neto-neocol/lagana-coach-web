@@ -21,10 +21,12 @@ if (form) {
   async function init() {
     try {
       const user = await getCurrentUser();
-      await populateCoaches(user);
-      await populateClubs(user);
-      await populatePlayers();
-      await populateStrokes();
+      await Promise.all([
+        populateCoaches(user),
+        populateClubs(user),
+        populatePlayers(),
+        populateStrokes(),
+      ]);
       if (mode === 'edit' && lessonId) {
         await loadLesson(lessonId, user);
       } else if (clubSelect && clubSelect.value) {
