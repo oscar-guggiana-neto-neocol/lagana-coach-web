@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Coach Settings · LaganaCoach{% endblock %}
+{% block content %}
+<section class="page-header">
+  <div>
+    <span class="page-eyebrow">Account</span>
+    <h1 class="page-title">Coach settings</h1>
+  </div>
+</section>
+
+<form id="coachSettingsForm">
+  <div class="page-card">
+    <div class="row g-3">
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="full_name">Full name</label>
+        <input class="form-control input-soft" id="full_name" required>
+      </div>
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control input-soft" id="email" type="email" required>
+      </div>
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="phone">Phone</label>
+        <input class="form-control input-soft" id="phone">
+      </div>
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="hourly_rate">Hourly rate (£)</label>
+        <input class="form-control input-soft" id="hourly_rate" type="number" step="0.01">
+      </div>
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="address_line1">Address line 1</label>
+        <input class="form-control input-soft" id="address_line1">
+      </div>
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="address_line2">Address line 2</label>
+        <input class="form-control input-soft" id="address_line2">
+      </div>
+      <div class="col-12 col-md-4">
+        <label class="form-label" for="city">City</label>
+        <input class="form-control input-soft" id="city">
+      </div>
+      <div class="col-6 col-md-4">
+        <label class="form-label" for="postcode">Postcode</label>
+        <input class="form-control input-soft" id="postcode">
+      </div>
+      <div class="col-6 col-md-4">
+        <label class="form-label" for="country">Country</label>
+        <input class="form-control input-soft" id="country">
+      </div>
+      <div class="col-12">
+        <label class="form-label">Club memberships</label>
+        <div id="coachClubCheckboxes" class="row g-2"></div>
+        <div class="form-text">Select the clubs you are associated with. Create new clubs from the Clubs page.</div>
+      </div>
+      <div class="col-12 col-md-4">
+        <label class="form-label" for="default_club_id">Default club</label>
+        <select class="form-select input-soft" id="default_club_id">
+          <option value="">None</option>
+        </select>
+        <div class="form-text">Used as the default selection when scheduling lessons.</div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <div class="alert d-none mb-0" id="coachSettingsAlert"></div>
+      <button class="btn btn-accent" type="submit">Save changes</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script type="module" src="{{ url_for('static', filename='js/coach_settings.js') }}"></script>
+{% endblock %}

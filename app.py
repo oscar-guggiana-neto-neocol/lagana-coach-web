@@ -69,6 +69,22 @@ def create_app() -> Flask:
     def player_edit(player_id: int):
         return render_template("players/form.html", mode="edit", player_id=player_id)
 
+    @app.route("/clubs")
+    def clubs_list():
+        return render_template("clubs/list.html")
+
+    @app.route("/clubs/new")
+    def club_create():
+        return render_template("clubs/form.html", mode="create")
+
+    @app.route("/clubs/<int:club_id>/edit")
+    def club_edit(club_id: int):
+        return render_template("clubs/form.html", mode="edit", club_id=club_id)
+
+    @app.route("/settings/coach")
+    def coach_settings():
+        return render_template("settings/coach.html")
+
     @app.route("/lessons")
     def lessons_list():
         return render_template("lessons/list.html")

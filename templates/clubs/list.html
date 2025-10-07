@@ -1,45 +1,46 @@
 {% extends 'base.html' %}
-{% block title %}Players · LaganaCoach{% endblock %}
+{% block title %}Clubs · LaganaCoach{% endblock %}
 {% block content %}
 <section class="page-header">
   <div>
-    <span class="page-eyebrow">Manage roster</span>
-    <h1 class="page-title">Players</h1>
+    <span class="page-eyebrow">Venue management</span>
+    <h1 class="page-title">Clubs</h1>
   </div>
   <div class="page-actions">
-    <a class="btn btn-accent" href="{{ url_for('player_create') }}">Add player</a>
+    <a class="btn btn-accent" href="{{ url_for('club_create') }}">Add club</a>
   </div>
 </section>
 
 <div class="page-card">
   <div class="row g-3 align-items-end">
     <div class="col-12 col-md-6">
-      <label class="form-label text-muted small" for="playerSearch">Search players</label>
+      <label class="form-label text-muted small" for="clubSearch">Search clubs</label>
       <div class="input-icon-wrapper">
         <span class="input-icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="20" y1="20" x2="16.65" y2="16.65"></line></svg>
         </span>
-        <input type="search" id="playerSearch" class="form-control input-soft" placeholder="Type a name or email">
+        <input type="search" id="clubSearch" class="form-control input-soft" placeholder="Filter by club name or city">
       </div>
     </div>
   </div>
+
   <div class="table-responsive table-modern-wrapper mt-4">
-    <table class="table table-modern align-middle" id="playersTable">
+    <table class="table table-modern align-middle" id="clubsTable">
       <thead>
         <tr>
           <th>Name</th>
-          <th>Email</th>
-          <th>Skill level</th>
-          <th>Status</th>
+          <th>Location</th>
+          <th>Contact</th>
+          <th>Courts</th>
           <th class="text-end"></th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
-    <p class="empty-placeholder d-none" id="playersEmpty">No players match your search yet. Try another keyword or <a class="link-accent" href="{{ url_for('player_create') }}">add a new player</a>.</p>
+    <p class="empty-placeholder d-none" id="clubsEmpty">No clubs found. Try a different search or <a class="link-accent" href="{{ url_for('club_create') }}">add a new club</a>.</p>
   </div>
 </div>
 {% endblock %}
 {% block scripts %}
-<script type="module" src="{{ url_for('static', filename='js/players.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/clubs.js') }}"></script>
 {% endblock %}

@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 {% block title %}Invoices · LaganaCoach{% endblock %}
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h1 class="h4 mb-0">Invoices</h1>
-  <a class="btn btn-primary" href="{{ url_for('invoices_wizard_period') }}">Generate invoice</a>
-</div>
-<div class="table-responsive">
-  <table class="table table-striped" id="invoicesTable">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Period</th>
-        <th>Status</th>
-        <th>Total net</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+<section class="page-header">
+  <div>
+    <span class="page-eyebrow">Billing</span>
+    <h1 class="page-title">Invoices</h1>
+  </div>
+  <div class="page-actions">
+    <a class="btn btn-accent" href="{{ url_for('invoices_wizard_period') }}">Generate invoice</a>
+  </div>
+</section>
+
+<div class="page-card">
+  <div class="table-responsive table-modern-wrapper">
+    <table class="table table-modern align-middle" id="invoicesTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Period</th>
+          <th>Status</th>
+          <th>Total net</th>
+          <th class="text-end"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p class="empty-placeholder d-none" id="invoicesEmpty">No invoices generated yet. When you're ready, <a class="link-accent" href="{{ url_for('invoices_wizard_period') }}">create your first invoice</a>.</p>
+  </div>
 </div>
 {% endblock %}
 {% block scripts %}

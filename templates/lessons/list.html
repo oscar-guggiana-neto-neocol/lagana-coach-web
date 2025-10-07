@@ -1,52 +1,62 @@
 {% extends 'base.html' %}
 {% block title %}Lessons · LaganaCoach{% endblock %}
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h1 class="h4 mb-0">Lessons</h1>
-  <a class="btn btn-primary" href="{{ url_for('lesson_create') }}">Add lesson</a>
-</div>
-<form class="row g-3 mb-3" id="lessonFilters">
-  <div class="col-12 col-md-3">
-    <label class="form-label" for="date_from">Date from</label>
-    <input class="form-control" type="date" id="date_from">
+<section class="page-header">
+  <div>
+    <span class="page-eyebrow">Schedule overview</span>
+    <h1 class="page-title">Lessons</h1>
   </div>
-  <div class="col-12 col-md-3">
-    <label class="form-label" for="date_to">Date to</label>
-    <input class="form-control" type="date" id="date_to">
+  <div class="page-actions">
+    <a class="btn btn-accent" href="{{ url_for('lesson_create') }}">Add lesson</a>
   </div>
-  <div class="col-12 col-md-3">
-    <label class="form-label" for="status">Status</label>
-    <select class="form-select" id="status">
-      <option value="">All</option>
-      <option value="draft">Draft</option>
-      <option value="set">Set</option>
-      <option value="executed">Executed</option>
-      <option value="invoiced">Invoiced</option>
-    </select>
+</section>
+
+<div class="page-card">
+  <form class="row g-3 align-items-end" id="lessonFilters">
+    <div class="col-12 col-md-3">
+      <label class="form-label text-muted small" for="date_from">Date from</label>
+      <input class="form-control input-soft" type="date" id="date_from">
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label text-muted small" for="date_to">Date to</label>
+      <input class="form-control input-soft" type="date" id="date_to">
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label text-muted small" for="status">Status</label>
+      <select class="form-select input-soft" id="status">
+        <option value="">All</option>
+        <option value="draft">Draft</option>
+        <option value="set">Set</option>
+        <option value="executed">Executed</option>
+        <option value="invoiced">Invoiced</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label text-muted small" for="payment_status">Payment</label>
+      <select class="form-select input-soft" id="payment_status">
+        <option value="">All</option>
+        <option value="open">Open</option>
+        <option value="paid">Paid</option>
+      </select>
+    </div>
+  </form>
+  <div class="table-responsive table-modern-wrapper mt-4">
+    <table class="table table-modern align-middle" id="lessonsTable">
+      <thead>
+        <tr>
+          <th data-sort-key="date" class="sortable">Date</th>
+          <th data-sort-key="time" class="sortable">Time</th>
+          <th data-sort-key="type" class="sortable">Type</th>
+          <th data-sort-key="players" class="sortable">Players</th>
+          <th data-sort-key="status" class="sortable">Status</th>
+          <th data-sort-key="total_amount" class="sortable">Amount</th>
+          <th class="text-end"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p class="empty-placeholder d-none" id="lessonsEmpty">No lessons found for the selected filters. Adjust the filters or <a class="link-accent" href="{{ url_for('lesson_create') }}">schedule a new lesson</a>.</p>
   </div>
-  <div class="col-12 col-md-3">
-    <label class="form-label" for="payment_status">Payment</label>
-    <select class="form-select" id="payment_status">
-      <option value="">All</option>
-      <option value="open">Open</option>
-      <option value="paid">Paid</option>
-    </select>
-  </div>
-</form>
-<div class="table-responsive">
-  <table class="table table-striped" id="lessonsTable">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Players</th>
-        <th>Status</th>
-        <th>Amount</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
 </div>
 {% endblock %}
 {% block scripts %}

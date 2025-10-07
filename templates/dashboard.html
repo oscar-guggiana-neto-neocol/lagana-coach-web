@@ -1,40 +1,67 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard · LaganaCoach{% endblock %}
 {% block content %}
-<div class="row g-4">
-  <div class="col-12 col-md-4">
-    <div class="card kpi-card">
-      <div class="card-body">
-        <h6 class="text-uppercase text-muted">Active Players</h6>
-        <h2 id="kpiPlayers" class="fw-bold">0</h2>
+<section class="dashboard-kpis mb-5">
+  <div class="row g-4">
+    <div class="col-12 col-md-4">
+      <div class="kpi-card kpi-primary">
+        <div class="kpi-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M4 21v-2a4 4 0 0 1 3-3.87"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="kpi-content">
+          <span class="kpi-label">Active Players</span>
+          <span id="kpiPlayers" class="kpi-value">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="kpi-card kpi-accent">
+        <div class="kpi-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </div>
+        <div class="kpi-content">
+          <span class="kpi-label">Upcoming Lessons</span>
+          <span id="kpiLessons" class="kpi-value">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="kpi-card kpi-warning">
+        <div class="kpi-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </div>
+        <div class="kpi-content">
+          <span class="kpi-label">Open Invoices</span>
+          <span id="kpiInvoices" class="kpi-value">0</span>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-12 col-md-4">
-    <div class="card kpi-card">
-      <div class="card-body">
-        <h6 class="text-uppercase text-muted">Upcoming Lessons</h6>
-        <h2 id="kpiLessons" class="fw-bold">0</h2>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-md-4">
-    <div class="card kpi-card">
-      <div class="card-body">
-        <h6 class="text-uppercase text-muted">Open Invoices</h6>
-        <h2 id="kpiInvoices" class="fw-bold">0</h2>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
-<section class="mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="h5 mb-0">Next lessons</h2>
-    <a class="btn btn-sm btn-primary" href="{{ url_for('lesson_create') }}">Create lesson</a>
+<section class="dashboard-card">
+  <div class="dashboard-card__header">
+    <div>
+      <h2 class="h5 mb-0">Next lessons</h2>
+      <p class="text-muted small mb-0">Stay on top of upcoming sessions</p>
+    </div>
+    <a class="btn btn-accent" href="{{ url_for('lesson_create') }}">Create lesson</a>
   </div>
   <div class="table-responsive">
-    <table class="table table-striped" id="upcomingLessonsTable">
+    <table class="table table-modern" id="upcomingLessonsTable">
       <thead>
         <tr>
           <th>Date</th>
